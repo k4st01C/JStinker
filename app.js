@@ -52,7 +52,7 @@ d3.select('#start').on('click', function() {
 
   function setGuessCount(newCount) {
     guessCount = newCount;
-    d3.select("#guesses-remaining").innerText = "Guesses remaining: " + guessCount + ".";
+    d3.select("#guesses-remaining").text("Guesses remaining: " + guessCount + ".");
   }
 
   function updateGame(e) {
