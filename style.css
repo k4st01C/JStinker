@@ -1,10 +1,13 @@
-svg {
-  margin: 0 auto;
-  display: block;
 
+
+body{
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
 }
 
-.tick line {
-  stroke:#ccc;
-  stroke-dasharray: 14,4;
+div{
+  flex-basis: 30%;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
