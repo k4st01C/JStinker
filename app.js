@@ -1,12 +1,23 @@
-function a(){
-	console.log(3);
-	b();
+function deepCopy(source) {
+	if (typeof source !== 'object' || source === null) return 'not an object';
+	let copy = Array.isArray(source) ? [] : {};
+
+	for (const key in source) {
+		if (typeof source[key] !== 'object' || source[key] === null) {
+			copy[key] = source[key];
+		} else {
+			copy[key] = deepCopy(source[key]);
+		}
+
+	}
+	return copy;
 }
 
-function b(){
-	console.log(4);
-	a();
-}
 
+a=[1,2,[3,4],{a:{
+	a:1,
+	b:2
+}},function(){}]
 
-a()
+b=deepCopy(a)
+console.log(deepCopy(b));
