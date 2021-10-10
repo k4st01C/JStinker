@@ -1,23 +1,18 @@
-function deepCopy(source) {
-	if (typeof source !== 'object' || source === null) return 'not an object';
-	let copy = Array.isArray(source) ? [] : {};
+const hourHand=document.querySelector('#hour')
+const minuteHand=document.querySelector('#minute')
+const secondHand=document.querySelector('#second')
 
-	for (const key in source) {
-		if (typeof source[key] !== 'object' || source[key] === null) {
-			copy[key] = source[key];
-		} else {
-			copy[key] = deepCopy(source[key]);
-		}
+let time=new Date()
+let seconds=6*time.getSeconds()
+let minutes=6*time.getMinutes()
+let hours=(time.getHours()%12)*30
+secondHand.style.transform=`rotate(${seconds}deg)`
+minuteHand.style.transform=`rotate(${minutes}deg)`
+hourHand.style.transform=`rotate(${hours}deg)`
 
-	}
-	return copy;
-}
-
-
-a=[1,2,[3,4],{a:{
-	a:1,
-	b:2
-}},function(){}]
-
-b=deepCopy(a)
-console.log(deepCopy(b));
+setInterval(() => {
+	seconds+=6
+	secondHand.style.transform=`rotate(${seconds}deg)`
+	minuteHand.style.transform=`rotate(${minutes}deg)`
+	hourHand.style.transform=`rotate(${hours}deg)`
+}, 1000);
