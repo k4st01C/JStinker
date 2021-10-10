@@ -1,26 +1,42 @@
 * {
-    margin: 0;
-}
-
-#head {
-    width: 60%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-h1 {
-    color: white;
-    margin: 0 auto;
-    
+	margin: 0;
+    font-family:sans-serif;
+    font-weight: lighter;
 }
 
 header {
-    background: #000;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+h1 {
+	color: white;
+    font-weight: 900;
+	text-align: center;
+    background-color: black;
+    padding: 15px 20%;
+}
+
+.vertical {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: row; */
+    /* margin: auto; */
+
 }
 
 h4 {
-    color: white;
-    text-align: justify;
+    padding: 15px 20%;
+	color: white;
+	text-align: justify;
+    background: teal;
+}
+
+header p {
+    width: 60%;
+    margin: 15px auto;
+    background:rgb(239, 237, 237);
+    padding: 15px 5px;
 }
