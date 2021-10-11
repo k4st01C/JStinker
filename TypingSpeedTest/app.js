@@ -11,12 +11,25 @@ let counter;
 const leadingZero = (x) => (x <= 9 ? '0' + x : x);
 
 function spellCheck(){
+    if (text.substring(0,textArea.value.length)!==textArea.value) {
+        textArea.style.borderColor='red'
+    } else {
+        textArea.style.borderColor='blue'
+    }
 
 }
 
+function reset() {
+    clearInterval(counter);
+    counter=null;
+    textArea.value=""
+    timer.innerHTML = '00:00:00';
+    flag=false;
+}
+
 function startTimer() {
-    textArea.classList.add('redfocus')
 	let textEntered = textArea.value;
+    spellCheck()
 	if (!textEntered.length && !flag) {
 		flag = true;
 		counter = setInterval(() => {
@@ -34,3 +47,4 @@ function startTimer() {
 }
 
 textArea.addEventListener('keypress', startTimer);
+btn.addEventListener('click',reset);
