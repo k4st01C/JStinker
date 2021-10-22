@@ -1,32 +1,55 @@
 'use strict';
 
-//*Components
-const btnAgain = document.querySelector('.again');
-const scoreBoard = document.querySelector('.number');
-const inputGuess = document.querySelector('.guess');
-const btnCheck = document.querySelector('.check');
-const pMessage = document.querySelector('.message');
-const pScore = document.querySelector('.label-score');
-const pHighScore = document.querySelector('.label-highscore');
+(function () {
+	//*Components
+	const btnAgain = document.querySelector('.again');
+	const scoreBoard = document.querySelector('.number');
+	const inputGuess = document.querySelector('.guess');
+	const btnCheck = document.querySelector('.check');
+	const message = document.querySelector('.message');
+	const sScore = document.querySelector('.score');
+	const sHighScore = document.querySelector('.highscore');
 
-//*Functions
-const rndNumber1to20 = () => ~~(Math.random() * 20) + 1;
+	//*initial values
+	let highScore = 0;
+	let score = 20;
+	let guess;
 
-//*initial values
-const guess = rndNumber1to20();
-let score = 20;
-let highScore = 0;
+	//*Functions
+	const rndNumber1to20 = () => ~~(Math.random() * 20) + 1;
 
-btnCheck.addEventListener('click', () => {
-	if (inputGuess.value != guess) {
-		if (inputGuess.value > guess) pMessage.innerHTML = 'too high!';
-		else pMessage.innerHTML = 'too low!';
-		score--;
-		pScore.innerHTML = `💯 Score: ${score}`;
-	} else {
-		scoreBoard.innerHTML = guess;
-		pMessage.innerHTML = 'Correct Number!';
-		highScore = guess;
+	const reset = () => {
+		message.textContent = 'Start guessing...';
+		scoreBoard.textContent = '?';
+		inputGuess.value = '';
+		sScore.textContent = 20;
+		btnCheck.disabled = false;
+		score = 20;
+		guess = rndNumber1to20();
+	};
+
+	const win = () => {
+		scoreBoard.textContent = guess;
+		message.textContent = 'Correct Number!';
+		sHighScore.textContent = highScore > score ? highScore : score;
 		btnCheck.disabled = true;
-	}
-});
+	};
+
+	const loseGame = () => {
+		btnCheck.disabled = true;
+		message.textContent = 'YOU LOST!!!';
+		console.log(2);
+	};
+
+	const loseRound = () => {
+		sScore.textContent = --score;
+		if (!score) return loseGame();
+		console.log(score);
+		message.textContent = `${inputGuess.value > guess ? 'too high!' : 'too low!'}`;
+	};
+
+	//*logic
+	guess = rndNumber1to20();
+	btnCheck.addEventListener('click', () => (inputGuess.value != guess ? loseRound() : win()));
+	btnAgain.addEventListener('click', reset);
+})();
