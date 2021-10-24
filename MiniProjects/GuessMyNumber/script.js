@@ -26,30 +26,34 @@
 		btnCheck.disabled = false;
 		score = 20;
 		guess = rndNumber1to20();
+		document.querySelector('body').style.backgroundColor = '#222';
 	};
 
 	const win = () => {
 		scoreBoard.textContent = guess;
 		message.textContent = 'Correct Number!';
 		sHighScore.textContent = highScore > score ? highScore : score;
+		highScore = score;
 		btnCheck.disabled = true;
+		document.querySelector('body').style.backgroundColor = '#60b347';
 	};
 
 	const loseGame = () => {
 		btnCheck.disabled = true;
 		message.textContent = 'YOU LOST!!!';
-		console.log(2);
 	};
 
-	const loseRound = () => {
-		sScore.textContent = --score;
-		if (!score) return loseGame();
-		console.log(score);
-		message.textContent = `${inputGuess.value > guess ? 'too high!' : 'too low!'}`;
+	const play = () => {
+		if (inputGuess.value == guess) return win();
+		else if (!score) return loseGame();
+		else {
+			sScore.textContent = --score;
+			message.textContent = `${inputGuess.value > guess ? 'too high!' : 'too low!'}`;
+		}
 	};
 
 	//*logic
 	guess = rndNumber1to20();
-	btnCheck.addEventListener('click', () => (inputGuess.value != guess ? loseRound() : win()));
+	btnCheck.addEventListener('click', play);
 	btnAgain.addEventListener('click', reset);
 })();
