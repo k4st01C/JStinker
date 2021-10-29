@@ -57,3 +57,7 @@
 	btnCheck.addEventListener('click', play);
 	btnAgain.addEventListener('click', reset);
 })();
+
+console.log(3);
+console.log(3);
+console.log(3);
