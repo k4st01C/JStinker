@@ -80,9 +80,9 @@ const addUsername8Balance = accs => {
 	});
 };
 
-const displayMovements = acc => {
+const displayMovements = movements => {
 	containerMovements.innerHTML = '';
-	acc.movements.forEach((e, i) => {
+	movements.forEach((e, i) => {
 		const typ = e < 0 ? 'withdrawal' : 'deposit';
 		const HTML = `
     <div class="movements__row">
@@ -115,7 +115,7 @@ const clear8LoseFocus = (...inputs) => {
 };
 
 const updateUI = acc => {
-	displayMovements(acc);
+	displayMovements(acc.movements);
 	displaySummary8Balance(acc);
 	labelWelcome.textContent = `Welcome Back, ${acc.owner.split(' ')[0]}`;
 };
@@ -173,4 +173,11 @@ btnLoan.addEventListener('click', e => {
 		updateUI(loggedAccount);
 	}
 	clear8LoseFocus(inputLoanAmount);
+});
+
+let flag = true;
+btnSort.addEventListener('click', () => {
+	let mutatedArray = loggedAccount.movements.slice().sort((a, b) => (flag ? a - b : b - a));
+	flag = !flag;
+	displayMovements(mutatedArray);
 });
