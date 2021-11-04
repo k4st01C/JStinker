@@ -181,3 +181,14 @@ btnSort.addEventListener('click', () => {
 	flag = !flag;
 	displayMovements(mutatedArray);
 });
+
+const a = accounts.flatMap(e => e.movements);
+
+const b = a.reduce(
+	(a, e) => {
+		e >= 0 ? (a.w += e) : (a.d += e);
+		return a;
+	},
+
+	{ w: 0, d: 0 },
+);
