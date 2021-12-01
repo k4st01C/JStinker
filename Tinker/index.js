@@ -208,3 +208,5 @@ const cl = () => console.log(111);
 document.querySelector('button').addEventListener('click', function () {
 	debounce(cl, 1000);
 });
+
+test;
