@@ -195,18 +195,36 @@
 // 	console.log(23);
 // };
 
-let time;
-const debounce = function (fn, waitTime) {
-	clearTimeout(time);
-	time = setTimeout(() => {
-		fn();
-	}, waitTime);
-};
+// let time;
+// const debounce = function (fn, waitTime) {
+// 	clearTimeout(time);
+// 	time = setTimeout(() => {
+// 		fn();
+// 	}, waitTime);
+// };
 
-const cl = () => console.log(111);
+// const cl = () => console.log(111);
 
-document.querySelector('button').addEventListener('click', function () {
-	debounce(cl, 1000);
-});
+// document.querySelector('button').addEventListener('click', function () {
+// 	debounce(cl, 1000);
+// });
+const apiKey = 'a4857b4f74a55b22691af7b2b429ee00';
+let url = 'https://api.openweathermap.org/data/2.5/weather?q=los+angeles&appid=';
+const httpRequest = new XMLHttpRequest();
+function get(url, success, fail) {
+	httpRequest.open('GET', url + apiKey);
+	httpRequest.send();
+	httpRequest.onload = () => {
+		httpRequest.status === 200 ? success(httpRequest.responseText) : fail();
+	};
+}
 
-test;
+function fail() {
+	console.log('u suck!!');
+}
+
+function success(data) {
+	console.log(JSON.parse(data));
+}
+
+get(url, success, fail);
