@@ -208,23 +208,89 @@
 // document.querySelector('button').addEventListener('click', function () {
 // 	debounce(cl, 1000);
 // });
-const apiKey = 'a4857b4f74a55b22691af7b2b429ee00';
+
+//!XML HTTP Request /w Promise
+
+/* const apiKey = 'a4857b4f74a55b22691af7b2b429ee00';
 let url = 'https://api.openweathermap.org/data/2.5/weather?q=los+angeles&appid=';
 const httpRequest = new XMLHttpRequest();
-function get(url, success, fail) {
-	httpRequest.open('GET', url + apiKey);
-	httpRequest.send();
-	httpRequest.onload = () => {
-		httpRequest.status === 200 ? success(httpRequest.responseText) : fail();
-	};
+
+function get(url) {
+	return new Promise(function (resolve, reject) {
+		httpRequest.open('GET', url + apiKey);
+		httpRequest.send();
+		httpRequest.onload = () => {
+			httpRequest.status === 200 ? resolve(httpRequest.responseText) : reject(httpRequest.status);
+		};
+	});
 }
 
-function fail() {
-	console.log('u suck!!');
+get(url).then(res => console.log(res)); */
+
+//!XML HTTP Request /w Async
+
+// const apiKey = 'a4857b4f74a55b22691af7b2b429ee00';
+// let url = 'https://api.openweathermap.org/data/2.5/weather?q=los+angeles&appid=';
+// const httpRequest = new XMLHttpRequest();
+
+// function get(url) {
+// 	httpRequest.open('GET', url + apiKey);
+// 	httpRequest.send();
+// 	httpRequest.onload = function (res) {
+// 		console.log(httpRequest.responseText);
+// 		// console.log(res);
+// 	};
+// 	// console.log(res);
+// }
+
+// console.log(get(url));
+
+// var twoSum = function (nums, target) {
+// 	let hash = new Map();
+// 	let num = [];
+// 	for (let i = 0; i < nums.length; i++) {
+// 		if (hash.has(target - nums[i])) {
+// 			num.push(i);
+// 			num.push(hash.get(target - nums[i]));
+// 			return num;
+// 		}
+// 		hash.set(nums[i], i);
+// 	}
+// };
+
+function ListNode(val, next) {
+	this.val = val === undefined ? 0 : val;
+	this.next = next === undefined ? null : next;
 }
 
-function success(data) {
-	console.log(JSON.parse(data));
-}
+var addTwoNumbers = function (l1, l2) {
+	const result = new ListNode();
+	let carryOver = 0;
 
-get(url, success, fail);
+	while (l1.length || l2.length) {
+		let sum = (l1.val ?? 0) + (l2.val ?? 0) + carryOver;
+
+		result.push(sum % 10);
+		carryOver = sum > 9 ? 1 : 0;
+	}
+	if (carryOver) result.push(carryOver);
+	return result;
+};
+
+var addTwoNumbers = function (l1, l2) {
+	let node = null;
+	const carry = arguments[2];
+	if (l1 || l2) {
+		const val1 = l1 ? l1.val : 0;
+		const val2 = l2 ? l2.val : 0;
+		const next1 = l1 ? l1.next : null;
+		const next2 = l2 ? l2.next : null;
+		const val = carry ? val1 + val2 + 1 : val1 + val2;
+		node = new ListNode(val % 10);
+		node.next = addTwoNumbers(next1, next2, val >= 10);
+	} else if (carry) {
+		node = new ListNode(1);
+		node.next = null;
+	}
+	return node;
+};
