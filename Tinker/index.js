@@ -258,39 +258,55 @@ get(url).then(res => console.log(res)); */
 // 	}
 // };
 
-function ListNode(val, next) {
-	this.val = val === undefined ? 0 : val;
-	this.next = next === undefined ? null : next;
-}
+// function ListNode(val, next) {
+// 	this.val = val === undefined ? 0 : val;
+// 	this.next = next === undefined ? null : next;
+// }
 
-var addTwoNumbers = function (l1, l2) {
-	const result = new ListNode();
-	let carryOver = 0;
+// let a = new ListNode(1);
+// let b = new ListNode(3);
+// a.next = b;
+// console.log(b);
 
-	while (l1.length || l2.length) {
-		let sum = (l1.val ?? 0) + (l2.val ?? 0) + carryOver;
+// var addTwoNumbers = function (l1, l2) {
+// 	const result = new ListNode();
+// 	let carryOver = 0;
 
-		result.push(sum % 10);
-		carryOver = sum > 9 ? 1 : 0;
-	}
-	if (carryOver) result.push(carryOver);
-	return result;
-};
+// 	while (l1.length || l2.length) {
+// 		let sum = (l1.val ?? 0) + (l2.val ?? 0) + carryOver;
 
-var addTwoNumbers = function (l1, l2) {
-	let node = null;
-	const carry = arguments[2];
-	if (l1 || l2) {
-		const val1 = l1 ? l1.val : 0;
-		const val2 = l2 ? l2.val : 0;
-		const next1 = l1 ? l1.next : null;
-		const next2 = l2 ? l2.next : null;
-		const val = carry ? val1 + val2 + 1 : val1 + val2;
-		node = new ListNode(val % 10);
-		node.next = addTwoNumbers(next1, next2, val >= 10);
-	} else if (carry) {
-		node = new ListNode(1);
-		node.next = null;
-	}
-	return node;
+// 		result.val(sum % 10);
+// 		carryOver = sum > 9 ? 1 : 0;
+// 	}
+// 	if (carryOver) result.next(carryOver);
+// 	return result;
+// };
+
+// console.log(addTwoNumbers([1, 2], [1]));
+
+// var isPalindrome = function (x) {
+// 	if (x < 0 || (x % 10 === 0 && x !== 0)) return false;
+// 	let reverse = 0;
+// 	(function reverseNum(x) {
+// 		if (x % 10 === 0 && x / 10 === 0) return reverse;
+// 		reverse = reverse * 10 + (x % 10);
+// 		x = ~~(x / 10);
+// 		reverseNum(x);
+// 	})(x);
+
+// 	return reverse === x;
+// };
+
+console.log(isPalindrome(1001));
+
+var romanToInt = function (s) {
+	const romanNumbers = {
+		I: 1,
+		V: 5,
+		X: 10,
+		L: 50,
+		C: 100,
+		D: 500,
+		M: 1000,
+	};
 };
