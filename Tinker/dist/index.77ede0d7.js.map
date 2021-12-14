@@ -1,0 +1,1 @@
+{"mappings":"IAEAA,EAAI,GACGA,EAAI,GACVA,IACAC,QAAQC,ICLG","sources":["index.js","dog.js"],"sourcesContent":["import k from './dog.js';\n\ni = 13;\nwhile (i > 0) {\n\ti--;\n\tconsole.log(k);\n}\n","let kemal = 3;\nexport default kemal;\n"],"names":["i","console","log"],"version":3,"file":"index.77ede0d7.js.map"}
