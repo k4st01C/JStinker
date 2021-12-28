@@ -32,12 +32,3 @@ const expenses = {
 		console.log(output.slice(0, -2));
 	},
 };
-
-Object.seal(expenses.limits);
-
-expenses.add(10, 'Pizza 🍕');
-expenses.add(100, 'Going to movies 🍿', 'Matilda');
-expenses.add(200, 'Stuff', 'Jay');
-expenses.check();
-
-console.log(expenses.budget);
