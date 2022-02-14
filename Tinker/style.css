@@ -1,0 +1,38 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+header {
+	background-color: blue;
+}
+
+main {
+	background: red;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+main > * {
+	flex: 1 1 auto;
+}
+
+footer {
+	background: yellow;
+}
+
+aside {
+	background: orange;
+	height: 300px;
+}
+
+body > * {
+	flex: 1 0 auto;
+	text-align: center;
+}
