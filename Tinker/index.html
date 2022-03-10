@@ -10,20 +10,28 @@
 </head>
 
 <body>
-    <header>
-        Header
-    </header>
-    <main>
-        <Section>
-            Section
-        </Section>
-        <aside>
-            aside
-        </aside>
-    </main>
-    <footer>
-        Footer
-    </footer>
+    <section class="login">
+        <h2>Please Login</h2>
+        <form action="POST">
+            <div class="form-control">
+                <input type="email" name="email" id="email">
+                <label for="email">
+                    Email
+                </label>
+            </div>
+            <div class="form-control">
+                <input type="password" name="password" id="password">
+                <label for="password">
+                    Password
+                </label>
+            </div>
+            <input type="button" value="Login">
+            <h5>Dont have an account yet? <a href="#">Register</a></h5>
+
+
+        </form>
+    </section>
+    <script src="index.js"></script>
 </body>
 
 </html>
