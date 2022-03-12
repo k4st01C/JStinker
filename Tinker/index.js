@@ -1,12 +1,29 @@
-const inputEmail = document.querySelector('#email');
-const inputPass = document.querySelector('#password');
-const labels = document.querySelectorAll('.form-control > label');
+const joke = document.querySelector('#joke');
+const btn = document.querySelector('input');
 
-function spanify(text) {
-	return text.split('').reduce((p, n, i) => {
-		p += `<span style="transition-delay:${i * 50}ms">${n}</span>`;
-		return p;
-	}, '');
+// btn.addEventListener('click');
+
+//.then
+// function fetchJoke() {
+// 	fetch('https://icanhazdadjoke.com/', {
+// 		headers: {
+// 			Accept: 'application/json',
+// 		},
+// 	})
+// 		.then(response => response.json())
+// 		.then(data => (joke.innerText = data.joke));
+// }
+
+//Async
+async function fetchJoke() {
+	const res = await fetch('https://icanhazdadjoke.com/', {
+		headers: {
+			Accept: 'application/json',
+		},
+	});
+	const data = await res.json();
+	joke.innerText = data.joke;
 }
 
-labels.forEach(e => (e.innerHTML = spanify(e.innerText)));
+fetchJoke();
+btn.addEventListener('click', fetchJoke);
