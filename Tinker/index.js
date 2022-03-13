@@ -1,29 +1,14 @@
-const joke = document.querySelector('#joke');
-const btn = document.querySelector('input');
+const btns = document.querySelectorAll('.faq-toggle');
 
-// btn.addEventListener('click');
+// method1;
+// document.addEventListener('click', e => {
+// 	if (e.target.classList.contains('fa-times')) e.target.closest('.faq').classList.remove('active');
+// 	if (e.target.classList.contains('fa-chevron-down'))
+// 		e.target.closest('.faq').classList.add('active');
+// });
 
-//.then
-// function fetchJoke() {
-// 	fetch('https://icanhazdadjoke.com/', {
-// 		headers: {
-// 			Accept: 'application/json',
-// 		},
-// 	})
-// 		.then(response => response.json())
-// 		.then(data => (joke.innerText = data.joke));
-// }
+// method 2
 
-//Async
-async function fetchJoke() {
-	const res = await fetch('https://icanhazdadjoke.com/', {
-		headers: {
-			Accept: 'application/json',
-		},
-	});
-	const data = await res.json();
-	joke.innerText = data.joke;
-}
-
-fetchJoke();
-btn.addEventListener('click', fetchJoke);
+btns.forEach(toggle =>
+	toggle.addEventListener('click', () => toggle.parentNode.classList.toggle('active')),
+);
