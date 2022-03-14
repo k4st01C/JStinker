@@ -3,7 +3,7 @@
 @import 'section.css';
 
 :root {
-	--bg-color: steelblue;
+	--bg-color: #6599ff;
 	--primary-color: hsl(241, 29%, 30%);
 	--border-radius: 2px;
 	--box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -12,103 +12,37 @@
 /* Fonts */
 
 body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-family: 'Muli', sans-serif;
-	background: #f0f0f0;
-}
-
-h1 {
-	margin: 50px 30px;
-	text-align: center;
-}
-
-.faq-container {
-	max-width: 600px;
-	margin: 0 auto;
-}
-
-.faq {
-	background-color: transparent;
-	border: 1px solid #9fa4a8;
-	border-radius: 10px;
-	margin: 20px 0;
-	padding: 30px;
-	position: relative;
-	overflow: hidden;
-	transition: 0.3s ease;
-}
-
-.faq.active {
-	background-color: #fff;
-	box-shadow: var(--box-shadow);
-}
-
-/* Using font awesome in CSS */
-
-.faq.active::before,
-.faq.active::after {
-	content: '\f075';
-	font-family: 'Font Awesome 5 Free';
-	color: #2ecc71;
-	font-size: 7rem;
-	position: absolute;
-	opacity: 0.2;
-	top: 20px;
-	left: 20px;
-	z-index: 0;
-}
-
-.faq.active::before {
-	color: #3f98db;
-	top: -10px;
-	left: -30px;
-	/* Mirror image */
-	transform: rotateY(180deg);
-}
-
-.faq-title {
-	margin: 0 35px 0 0;
-}
-
-.faq-text {
-	display: none;
-	margin: 30px 0 0;
-}
-
-.faq.active .faq-text {
-	display: block;
-}
-
-.faq-toggle {
-	background-color: transparent;
-	border-radius: 50%;
-	border: 0;
-	cursor: pointer;
-	font-size: 16px;
-	padding: 0;
-	position: absolute;
-	top: 30px;
-	right: 30px;
-	height: 30px;
-	width: 30px;
-}
-
-.faq-toggle:focus {
-	outline: 0;
-}
-
-.faq-toggle .fa-times {
-	display: none;
-}
-
-.faq.active .faq-toggle .fa-times {
-	display: block;
+	height: 100vh;
+	background-color: var(--bg-color);
 	color: white;
 }
 
-.faq.active .faq-toggle .fa-chevron-down {
-	display: none;
+section {
+	max-width: 600px;
+	text-align: center;
 }
 
-.faq.active .faq-toggle {
-	background-color: #9fa4a8;
+textarea {
+	max-width: inherit;
+	background: #ffde00;
+}
+
+button {
+	border-radius: 20px;
+	outline: none;
+	border: none;
+	margin: 20px 10px;
+	padding: 10px;
+	background-color: orange;
+	color: white;
+	box-shadow: var(--box-shadow);
+}
+
+button.selected {
+	background-color: #097054;
+	color: black;
 }

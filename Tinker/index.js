@@ -1,14 +1,34 @@
-const btns = document.querySelectorAll('.faq-toggle');
+const textArea = document.getElementById('choices');
+const choicesContainer = document.querySelector('.buttons');
+textArea.value = '';
+textArea.focus();
+textArea.addEventListener('keyup', e => {
+	if (e.key === 'Enter') {
+		selectChoice();
+		return;
+	}
+	choicesContainer.innerHTML = '';
+	textArea.value
+		.split(',')
+		.filter(e => e !== '')
+		.forEach(e => {
+			const btn = document.createElement('button');
+			btn.innerText = e;
+			choicesContainer.appendChild(btn);
+		});
+});
 
-// method1;
-// document.addEventListener('click', e => {
-// 	if (e.target.classList.contains('fa-times')) e.target.closest('.faq').classList.remove('active');
-// 	if (e.target.classList.contains('fa-chevron-down'))
-// 		e.target.closest('.faq').classList.add('active');
-// });
-
-// method 2
-
-btns.forEach(toggle =>
-	toggle.addEventListener('click', () => toggle.parentNode.classList.toggle('active')),
-);
+function selectChoice() {
+	const choices = choicesContainer.querySelectorAll('button');
+	let temp = 0;
+	const interval = setInterval(() => {
+		choices[temp].classList.remove('selected');
+		const rnd = ~~(Math.random() * choices.length);
+		choices[rnd].classList.add('selected');
+		temp = rnd;
+	}, 1000 / choices.length);
+	setTimeout(() => {
+		clearInterval(interval);
+	}, 1000);
+	textArea.value = '';
+}
