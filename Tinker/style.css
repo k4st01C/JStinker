@@ -4,47 +4,84 @@
 
 :root {
 	--bg-color: #6599ff;
-	--primary-color: hsl(241, 29%, 30%);
+	--primary-color: #234c99;
 	--border-radius: 2px;
 	--box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12),
 		0px 1px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 body {
-	font-family: 'Share Tech Mono', monospace;
-	font-size: 1.3rem;
-	height: 100vh;
+	font-family: 'Helvetica Neue';
+	background-color: #6599ff;
 	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
-	gap: 80px;
 	color: white;
-	background-color: purple;
 }
 
-.brand {
+h2 {
+	margin-top: 0px;
+}
+
+h1 {
+	margin-bottom: 10px;
+}
+
+.big.glass {
+	margin-top: 20px;
+	width: 200px;
+	height: 400px;
+	align-items: center;
+	overflow: hidden;
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.glass {
+	border: 4px solid var(--primary-color);
+	width: 60px;
+	border-radius: 0% 0% 26% 26% / 0% 0% 38% 38%;
+	height: 120px;
+	background-color: #fff;
+	color: var(--primary-color);
+	vertical-align: middle;
+	display: table-cell;
+	transition: all 0.2s ease-in-out;
+}
+
+ul {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	max-width: 600px;
+	list-style: none;
 	text-align: center;
 }
 
-i {
-	font-size: 50px;
+ul > li {
+	cursor: pointer;
 }
 
-.brand > p:nth-child(3) {
-	font-size: 20px;
-}
-.brand > p:nth-child(2) {
-	margin: 40px 0;
-	font-size: 40px;
-	height: 40px;
+.glass.active {
+	background-color: var(--bg-color);
+	color: white;
 }
 
-@media screen and (max-width: 768px) {
-	/* STYLES HERE */
-	body {
-		flex-direction: column;
-		height: auto;
-		margin-top: 50px;
-	}
+.full {
+	background-color: var(--bg-color);
+	transition: all 0.2s ease-in-out;
+	height: 0%;
+	width: 100%;
+	font-size: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.empty {
+	background-color: white;
+	width: 100%;
+	height: max-content;
+	flex-grow: 1;
 }

@@ -1,12 +1,17 @@
-const counters = document.querySelectorAll('.brand > p:nth-child(2)');
+const glasses = document.querySelectorAll('ul>li>div');
+const empty = document.querySelector('.empty');
+const full = document.querySelector('.full');
 
-const numbers = [12000, 7500, 5000];
+glasses.forEach((glass, i) =>
+	glass.addEventListener('click', el => {
+		full.style.height = (i + 1) * 12.5 + '%';
+		full.innerHTML = `${(i + 1) * 12.5}%`;
 
-counters.forEach((e, i) => {
-	let start = 0;
-	const interval = setInterval(() => {
-		start += numbers[i] / 1000;
-		e.innerText = start;
-		if (start >= numbers[i]) clearInterval(interval);
-	}, 1);
-});
+		glasses.forEach((glass, idx) => {
+			if (idx <= i && glass.classList.contains('active')) return;
+			if (idx > i) glass.classList.remove('active');
+			if (idx > i && !glass.classList.contains('active')) return;
+			glass.classList.add('active');
+		});
+	}),
+);
