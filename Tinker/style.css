@@ -1,87 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;800&display=swap');
 @import 'normalize.css';
 @import 'section.css';
 
 :root {
-	--bg-color: #6599ff;
-	--primary-color: #234c99;
+	--secondary-color: #373b69;
+	--primary-color: #22254b;
 	--border-radius: 2px;
 	--box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12),
 		0px 1px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 body {
-	font-family: 'Helvetica Neue';
-	background-color: #6599ff;
+	background-color: var(--primary-color);
+	font-family: 'Poppins', sans-serif;
+	font-weight: 200;
+	box-sizing: border-box;
+	margin: 0;
+}
+
+header {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	color: white;
-}
-
-h2 {
-	margin-top: 0px;
-}
-
-h1 {
-	margin-bottom: 10px;
-}
-
-.big.glass {
-	margin-top: 20px;
-	width: 200px;
-	height: 400px;
-	align-items: center;
-	overflow: hidden;
-	background-color: transparent;
-	display: flex;
-	flex-direction: column;
+	background-color: var(--secondary-color);
 	justify-content: flex-end;
+	padding: 1rem;
 }
 
-.glass {
-	border: 4px solid var(--primary-color);
-	width: 60px;
-	border-radius: 0% 0% 26% 26% / 0% 0% 38% 38%;
-	height: 120px;
-	background-color: #fff;
-	color: var(--primary-color);
-	vertical-align: middle;
-	display: table-cell;
-	transition: all 0.2s ease-in-out;
+form > input {
+	background-color: transparent;
+	border: 2px solid var(--primary-color);
+	outline: none;
+	color: #fff;
+	border-radius: 50px;
+	font-size: 1rem;
+	padding: 0.5rem 1rem;
 }
 
-ul {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 20px;
-	max-width: 600px;
-	list-style: none;
-	text-align: center;
+form > input::placeholder {
+	color: #7378c5;
 }
 
-ul > li {
-	cursor: pointer;
+form > input:focus {
+	background-color: var(--primary-color);
 }
 
-.glass.active {
-	background-color: var(--bg-color);
-	color: white;
-}
-
-.full {
-	background-color: var(--bg-color);
-	transition: all 0.2s ease-in-out;
-	height: 0%;
-	width: 100%;
-	font-size: 30px;
+main {
 	display: flex;
-	align-items: center;
+	flex-wrap: wrap;
+	margin: 30px;
+	gap: 3rem;
 	justify-content: center;
 }
-.empty {
-	background-color: white;
+
+.movie {
+	width: 300px;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	border-radius: 10px;
+	background-color: var(--secondary-color);
+	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.movie > img {
 	width: 100%;
-	height: max-content;
-	flex-grow: 1;
+}
+
+.movie:hover .overview {
+	transform: translateY(5%);
+	transition: transform 0.5s ease-in;
+}
+
+.movie-info {
+	color: #eee;
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	letter-spacing: 0.5px;
+	font-weight: 200;
+}
+
+span {
+	background-color: var(--primary-color);
+	padding: 3px;
+	font-weight: 800;
+	align-self: center;
+}
+span.green {
+	color: lightgreen;
+}
+span.red {
+	color: red;
+}
+span.orange {
+	color: orange;
+}
+
+.movie-info h3 {
+	margin: 0;
+	font-weight: inherit;
+}
+
+.overview {
+	position: absolute;
+	bottom: 0;
+	background-color: white;
+	transform: translateY(101%);
+	max-height: 100%;
+	padding: 20px;
 }
