@@ -1,22 +1,18 @@
-const sliderContainer = document.querySelector('.container');
-const slideLeft = document.querySelector('.left-slide');
-const slideRight = document.querySelector('.right-slide');
-const upBtn = document.querySelector('.action-buttons>button:last-child');
-const downBtn = document.querySelector('.action-buttons>button:first-child');
-const slidesLength = slideRight.querySelectorAll('div').length;
+const btnNotification = document.querySelector('.btn-notification');
+const notificationContainer = document.querySelector('.notification-container');
 
-let activeSlideIdx = 0;
+btnNotification.addEventListener('click', notify);
 
-slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`;
+const messages = ['message 1', 'message 2', 'message3'];
+notificationIdx = 0;
 
-upBtn.addEventListener('click', () => changeSlide('up'));
-downBtn.addEventListener('click', () => changeSlide('down'));
-
-const changeSlide = direction => {
-	const sliderHeight = document.documentElement.clientHeight;
-	if (direction === 'up') activeSlideIdx = ++activeSlideIdx % slidesLength;
-	else if (direction === 'down') activeSlideIdx = (--activeSlideIdx + slidesLength) % slidesLength;
-
-	slideRight.style.transform = `translateY(-${activeSlideIdx * sliderHeight}px)`;
-	slideLeft.style.transform = `translateY(${activeSlideIdx * sliderHeight}px)`;
-};
+function notify() {
+	notificationIdx = ++notificationIdx % 3;
+	const notification = document.createElement('button');
+	notification.innerText = messages[notificationIdx];
+	if (notificationIdx === 0) notification.classList.add('green');
+	else if (notificationIdx === 1) notification.classList.add('yellow');
+	else if (notificationIdx === 2) notification.classList.add('red');
+	notificationContainer.append(notification);
+	setTimeout(() => notification.remove(), 2000);
+}
