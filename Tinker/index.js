@@ -1,35 +1,22 @@
-const btns = document.querySelectorAll('button');
+const sliderContainer = document.querySelector('.container');
+const slideLeft = document.querySelector('.left-slide');
+const slideRight = document.querySelector('.right-slide');
+const upBtn = document.querySelector('.action-buttons>button:last-child');
+const downBtn = document.querySelector('.action-buttons>button:first-child');
+const slidesLength = slideRight.querySelectorAll('div').length;
 
-btns[0].addEventListener('click', () => {
-	let limit = Math.max(
-		document.body.scrollHeight,
-		document.body.offsetHeight,
-		document.documentElement.clientHeight,
-		document.documentElement.scrollHeight,
-		document.documentElement.offsetHeight,
-	);
+let activeSlideIdx = 0;
 
-	const Y = window.pageYOffset + document.documentElement.clientHeight;
-	console.log(Y, limit);
-	window.scroll({
-		left: 0,
-		top: Y === limit ? 0 : Y,
-		behavior: 'smooth',
-	});
-});
-btns[1].addEventListener('click', () => {
-	let limit = Math.max(
-		document.body.scrollHeight,
-		document.body.offsetHeight,
-		document.documentElement.clientHeight,
-		document.documentElement.scrollHeight,
-		document.documentElement.offsetHeight,
-	);
-	const Y = window.pageYOffset - document.documentElement.clientHeight;
-	console.log(Y);
-	window.scroll({
-		left: 0,
-		top: window.pageYOffset === 0 ? limit : Y,
-		behavior: 'smooth',
-	});
-});
+slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`;
+
+upBtn.addEventListener('click', () => changeSlide('up'));
+downBtn.addEventListener('click', () => changeSlide('down'));
+
+const changeSlide = direction => {
+	const sliderHeight = document.documentElement.clientHeight;
+	if (direction === 'up') activeSlideIdx = ++activeSlideIdx % slidesLength;
+	else if (direction === 'down') activeSlideIdx = (--activeSlideIdx + slidesLength) % slidesLength;
+
+	slideRight.style.transform = `translateY(-${activeSlideIdx * sliderHeight}px)`;
+	slideLeft.style.transform = `translateY(${activeSlideIdx * sliderHeight}px)`;
+};
