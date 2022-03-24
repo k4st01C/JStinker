@@ -43,7 +43,7 @@ input:focus {
 
 .user-card {
 	display: flex;
-	width: auto;
+	width: 600px;
 	background-color: var(--primary-color);
 	border-radius: 10px;
 	padding: 1rem;
@@ -81,11 +81,14 @@ input:focus {
 
 .repos {
 	font-size: 0.7rem;
+	width: auto;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
 }
 
-.repos > small {
+.repos > span {
 	background-color: var(--secondary-color);
 	padding: 2px;
 	margin-right: 0.6rem;
-	line-height: 1.6rem;
 }

@@ -11,7 +11,7 @@ const url = 'https://api.github.com/users/';
 
 function listRepos(repos) {
 	return repos.reduce((ac, repo) => {
-		ac += `<small>${repo.name}</small>`;
+		ac += `<span>${repo.name}</span>`;
 		return ac;
 	}, '');
 }
@@ -59,6 +59,6 @@ async function fetchUrl(event) {
 		form.insertAdjacentHTML('afterend', render(data, repos));
 	} catch (error) {
 		console.log(error);
-		form.insertAdjacentHTML('afterend', error);
+		form.insertAdjacentHTML('afterend', `<div class="user-card">No Profile with this name</div>`);
 	}
 }
