@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap');
-@import 'section.css';
-
 :root {
 	--primary-color: hsl(255, 90%, 50%);
 	--secondary-color: #f0f0f0;
@@ -15,6 +13,7 @@
 }
 
 body {
+	background-color: rosybrown;
 	font-family: 'Oswald', sans-serif;
 	font-size: 16px;
 	height: 100vh;
@@ -22,43 +21,12 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--secondary-color);
 	gap: 2rem;
 }
 
-.img {
-	width: 250px;
-	height: 400px;
-	position: relative;
-}
-
-img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.heart {
+input {
 	position: absolute;
-	/* top: 0px;
-	left: 0px; */
-	transform: scale(0);
-}
-
-.dblClick {
-	animation: scale 0.5s;
-}
-
-h2 {
-	font-size: 1.2rem;
-}
-
-@keyframes scale {
-	from {
-		transform: scale(0);
-	}
-	to {
-		transform: scale(5);
-		opacity: 0;
-	}
+	bottom: 20px;
+	width: 100px;
+	border: 10px solid hsl(0, 25%, 35%);
 }
