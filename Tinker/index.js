@@ -1,64 +1,25 @@
-const form = document.querySelector('form');
-const input = document.querySelector('input');
 const img = document.querySelector('img');
-const name = document.querySelector('.name');
-const bio = document.querySelector('.bio');
-const followers = document.querySelector('.followers');
-const following = document.querySelector('.following');
-const repos = document.querySelector('.repos');
+const title = document.querySelector('.title');
+const par = document.querySelector('.par');
+const heart = document.querySelector('.heart');
 
-const url = 'https://api.github.com/users/';
+let likeCounter = 0;
+let clickTime = 0;
 
-function listRepos(repos) {
-	return repos.reduce((ac, repo) => {
-		ac += `<span>${repo.name}</span>`;
-		return ac;
-	}, '');
-}
-
-function getURL(url) {
-	return axios.get(url);
-}
-
-async function fetchRepos() {}
-
-function render(data, repos) {
-	const { avatar_url, bio, name, followers, following, public_repos } = data;
-	return `<div class="user-card">
-        <img class="profile" src=${avatar_url} alt="">
-        <div class="text">
-            <h2 class="name">${name}</h2>
-            <p class="bio">${bio}</p>
-            <div class="metrics">
-                <h5 class="followers">${followers} Followers</h5>
-                <h5 class="following">${following} Following</h5>
-                <h5 class="repo">${public_repos} Repos</h5>
-            </div>
-            <div class="repos">
-            ${listRepos(repos)}
-            </div>
-        </div>
-    </div>`;
-}
-
-form.addEventListener('submit', fetchUrl);
-
-async function fetchUrl(event) {
-	event.preventDefault();
-	try {
-		const [
-			{
-				value: { data },
-			},
-			{
-				value: {
-					data: [...repos],
-				},
-			},
-		] = await Promise.allSettled([getURL(url + input.value), getURL(url + input.value + '/repos')]);
-		form.insertAdjacentHTML('afterend', render(data, repos));
-	} catch (error) {
-		console.log(error);
-		form.insertAdjacentHTML('afterend', `<div class="user-card">No Profile with this name</div>`);
+img.addEventListener('click', function (e) {
+	if (!clickTime) clickTime = new Date().getTime();
+	else {
+		if (new Date().getTime() - clickTime < 500) addHeart(e);
+		else clickTime = new Date().getTime();
 	}
+});
+
+function addHeart(e) {
+	const { offsetX, offsetY } = e;
+	heart.style.top = offsetY + 'px';
+	heart.style.left = offsetX + 'px';
+	likeCounter++;
+	heart.classList.add('dblClick');
+	par.innerText = `You liked it ${likeCounter} times`;
+	setTimeout(() => heart.classList.remove('dblClick'), 500);
 }
