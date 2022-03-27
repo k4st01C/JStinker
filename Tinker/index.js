@@ -1,59 +1,19 @@
-const btnAdd = document.getElementById('add-note');
-const notesEl = document.getElementById('notes');
+const images = document.querySelector('.images');
+const btnPrev = document.querySelector('.buttons>button:first-child');
+const btnNext = document.querySelector('.buttons>button:last-child');
+let i = 0;
+setInterval(() => {
+	i = ++i % 5;
+	images.style.transform = `translateX(-${100 * i}%)`;
+}, 2000);
 
-function renderNote(text) {
-	return `<div class="page edit">
-						<i class="fa fa-edit" aria-hidden="true"></i>
-						<textarea class="note">${text || ''}</textarea>
-						<div class="render hidden"></div>
-						<i class="fa fa-trash-can" aria-hidden="true"></i>
-				</div>`;
-}
-
-function updateLS() {
-	localStorage.removeItem('notes');
-	const arr = Array.from(document.querySelectorAll('.note')).map(e => e.value);
-	localStorage.setItem('notes', JSON.stringify(arr));
-}
-
-function renderLS() {
-	if (localStorage.notes) {
-		JSON.parse(localStorage.getItem('notes')).forEach(el => {
-			notesEl.insertAdjacentHTML('beforeend', renderNote(el));
-			document.querySelectorAll('.render').forEach(e => e.classList.remove('hidden'));
-			document.querySelectorAll('.page').forEach(e => e.classList.remove('edit'));
-			document.querySelectorAll('.note').forEach(e => {
-				e.nextElementSibling.innerHTML = marked.parse(e.value);
-				e.classList.add('hidden');
-			});
-		});
-	}
-}
-
-renderLS();
-
-document.addEventListener('click', e => {
-	if (e.target.classList.contains('fa-trash-can')) {
-		e.target.closest('.page').remove();
-		updateLS();
-	}
+btnPrev.addEventListener('click', () => {
+	const coordX = images.style.transform.slice(11, -2);
+	console.log(coordX);
+	images.style.transform = `translateX(-${-coordX - 100 === 0 ? 400 : -coordX - 100}%)`;
 });
-
-document.addEventListener('click', e => {
-	if (e.target.classList.contains('fa-edit')) {
-		const noteEl = e.target.nextElementSibling;
-		const renderEl = noteEl.nextElementSibling;
-		const pageEl = noteEl.parentElement;
-		noteEl.classList.toggle('hidden');
-		renderEl.classList.toggle('hidden');
-		pageEl.classList.toggle('edit');
-		if (noteEl.classList.contains('hidden')) {
-			renderEl.innerHTML = marked.parse(noteEl.value);
-			updateLS();
-		}
-	}
-});
-
-btnAdd.addEventListener('click', () => {
-	notesEl.insertAdjacentHTML('beforeend', renderNote());
+btnNext.addEventListener('click', () => {
+	const coordX = images.style.transform.slice(11, -2);
+	console.log(coordX);
+	images.style.transform = `translateX(-${-coordX + 100 === 500 ? 0 : -coordX + 100}%)`;
 });
