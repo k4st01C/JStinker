@@ -1,19 +1,50 @@
-const images = document.querySelector('.images');
-const btnPrev = document.querySelector('.buttons>button:first-child');
-const btnNext = document.querySelector('.buttons>button:last-child');
-let i = 0;
-setInterval(() => {
-	i = ++i % 5;
-	images.style.transform = `translateX(-${100 * i}%)`;
-}, 2000);
+const URL = 'https://pokeapi.co/api/v2/pokemon/';
+const CARD_NUMBER = 40;
 
-btnPrev.addEventListener('click', () => {
-	const coordX = images.style.transform.slice(11, -2);
-	console.log(coordX);
-	images.style.transform = `translateX(-${-coordX - 100 === 0 ? 400 : -coordX - 100}%)`;
-});
-btnNext.addEventListener('click', () => {
-	const coordX = images.style.transform.slice(11, -2);
-	console.log(coordX);
-	images.style.transform = `translateX(-${-coordX + 100 === 500 ? 0 : -coordX + 100}%)`;
-});
+const container = document.querySelector('.container');
+
+const promiseArray = [];
+
+function renderHTML(img, id, title, cat) {
+	const type = {
+		grass: 'lightgreen',
+		fire: 'orange',
+		water: 'lightblue',
+		bug: 'yellow',
+		normal: '#eee',
+		poison: 'rebeccapurple',
+	};
+
+	return `
+	        <div class="card" style="background-color:${type[cat]}">
+            <img src="${img}" alt="">
+            <small>#00${id}</small>
+            <h2>${title}</h2>
+            <p>Type: ${cat}</p>
+        </div>
+	`;
+}
+
+for (let i = 1; i <= CARD_NUMBER; i++) promiseArray.push(axios.get(URL + i));
+
+async function fetchPokemons() {
+	const data = await Promise.all(promiseArray);
+	for (let i = 0; i < CARD_NUMBER; i++) {
+		const {
+			data: {
+				name: title,
+				id,
+				sprites: { front_default: img },
+				types: [
+					{
+						type: { name: type },
+					},
+				],
+			},
+		} = data[i];
+		container.insertAdjacentHTML('beforeend', renderHTML(img, id, title, type));
+	}
+	console.log(data);
+}
+
+fetchPokemons();
