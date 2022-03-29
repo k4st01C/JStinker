@@ -1,5 +1,5 @@
 const URL = 'https://pokeapi.co/api/v2/pokemon/';
-const CARD_NUMBER = 40;
+const CARD_NUMBER = 150;
 
 const container = document.querySelector('.container');
 
@@ -12,7 +12,8 @@ function renderHTML(img, id, title, cat) {
 		water: 'lightblue',
 		bug: 'yellow',
 		normal: '#eee',
-		poison: 'rebeccapurple',
+		poison: 'lightcoral',
+		electric: 'cyan',
 	};
 
 	return `
@@ -44,7 +45,6 @@ async function fetchPokemons() {
 		} = data[i];
 		container.insertAdjacentHTML('beforeend', renderHTML(img, id, title, type));
 	}
-	console.log(data);
 }
 
 fetchPokemons();
