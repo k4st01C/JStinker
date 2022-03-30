@@ -6,15 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sticky Navbar</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <button class="magic">Magic 🪄</button>
-    <div class="boxes big">
+<body class="bg-gray-200">
+    <div class="container rounded-xl">
+        <h2>Verify Your Account</h2>
+        <p>We emailed you the six digit code to aaa@a.com.Enter the code below to confirm your email address</p>
+        <div class="numbers">
+            <input type="number" placeholder="0" class="rounded-lg active">
+            <input type="number" placeholder="0" class="rounded-lg">
+            <input type="number" placeholder="0" class="rounded-lg">
+            <input type="number" placeholder="0" class="rounded-lg">
+            <input type="number" placeholder="0" class="rounded-lg">
+            <input type="number" placeholder="0" class="rounded-lg">
+        </div>
+        <div class="small">This is design only. We did not actually send you an email as we dont have your email right?
+        </div>
     </div>
-
 
     <script src="index.js"></script>
 </body>
