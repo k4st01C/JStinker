@@ -16,41 +16,86 @@
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	background: linear-gradient(to right, #d4d3dd, #efefbb);
+	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
 }
 
-.card {
-	border-radius: 10px;
-	overflow: hidden;
-	border: 2px solid white;
-	background-color: white;
-}
-
-.card > .img {
-	background-image: url('https://picsum.photos/1000');
-	width: 240px;
-	height: 360px;
-	background-position: center center;
-	background-size: cover;
-}
-
-.toolbox {
-	display: flex;
-	justify-content: center;
-	padding: 3px;
-}
-
-.tool > span {
-	display: block;
-	font-size: 10px;
-}
-
-.tool {
-	margin: 0 auto;
+button {
+	background-color: #f9ca24;
+	box-shadow: 0 3px rgba(249, 202, 36, 0.5);
 	text-align: center;
+	margin: 20px auto 40px auto;
+	position: fixed;
+	top: 20px;
+	color: white;
+	padding: 10px;
+	border-radius: 3px;
 	cursor: pointer;
+	border: none;
+	letter-spacing: 1px;
+	z-index: 100;
+}
+
+button:active {
+	transform: translateY(2px);
+	box-shadow: none;
+}
+
+.boxes {
+	width: 500px;
+	height: 500px;
+	/* background-color: yellow; */
+	outline: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	position: relative;
+}
+.boxes .box {
+	/* transform: rotateZ(0deg); */
+	transition: all 0.5s;
+	position: relative;
+}
+.boxes.big {
+	width: 600px;
+	height: 600px;
+}
+
+.boxes.big .box {
+	transform: rotateZ(360deg);
+	/* transition: all 0.5s; */
+}
+
+.boxes.big .box::after {
+	content: '';
+	width: 10px;
+	height: 125px;
+	color: #f9ca24;
+	background-color: #f9ca24;
+	position: absolute;
+	top: 5px;
+	right: -10px;
+	transform: skew(0, 45deg);
+}
+.boxes.big .box::before {
+	content: '';
+	width: 125px;
+	height: 10px;
+	color: #f9ca24;
+	background-color: #f9ca24;
+	position: absolute;
+	bottom: -10px;
+	right: -5px;
+	transform: skew(45deg, 0deg);
+}
+
+.box {
+	width: 125px;
+	height: 125px;
+	background-image: url('https://media0.giphy.com/media/l3HBbltOYjoNq/giphy.gif?cid=ecf05e47lh6i5gva20l0pmbfajn6vm49s3oxtygsavcs36m2&rid=giphy.gif&ct=g');
+	background-size: 500px 500px;
+	background-repeat: no-repeat;
+	position: relative;
 }

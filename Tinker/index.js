@@ -1,15 +1,13 @@
-const img = document.querySelector('.img');
+const boxes = document.querySelector('.boxes');
+const btnMagic = document.querySelector('.magic');
 
-const imgUrls = {
-	fa_home: 100,
-	fa_box: 200,
-	fa_book_open: 300,
-	fa_users: 400,
-};
-
-document.addEventListener('click', e => {
-	if (e.target.classList.contains('fa-solid')) {
-		const temp = e.target.classList[1].replaceAll('-', '_');
-		img.style.backgroundImage = `url("https://picsum.photos/${imgUrls[temp]}`;
+for (let i = 0; i < 4; i++) {
+	for (let j = 0; j < 4; j++) {
+		const div = document.createElement('div');
+		div.className = 'box';
+		div.style.backgroundPosition = `${j * -125}px ${i * -125}px`;
+		boxes.append(div);
 	}
-});
+}
+
+btnMagic.addEventListener('click', () => boxes.classList.toggle('big'));
