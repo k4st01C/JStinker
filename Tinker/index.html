@@ -6,27 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sticky Navbar</title>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-gray-200">
-    <div class="container rounded-xl">
-        <h2>Verify Your Account</h2>
-        <p>We emailed you the six digit code to aaa@a.com.Enter the code below to confirm your email address</p>
-        <div class="numbers">
-            <input type="number" placeholder="0" class="rounded-lg active">
-            <input type="number" placeholder="0" class="rounded-lg">
-            <input type="number" placeholder="0" class="rounded-lg">
-            <input type="number" placeholder="0" class="rounded-lg">
-            <input type="number" placeholder="0" class="rounded-lg">
-            <input type="number" placeholder="0" class="rounded-lg">
+<body>
+    <div class="users-container">
+        <div class="header">
+            <h4>Live User filter</h4>
+            <small>Search by name and/or location</small>
+            <input type="text" name="text" id="text" placeholder="Search">
         </div>
-        <div class="small">This is design only. We did not actually send you an email as we dont have your email right?
-        </div>
+        <ul class="users">
+
+
+        </ul>
     </div>
 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
     <script src="index.js"></script>
 </body>
 

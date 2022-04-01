@@ -19,65 +19,65 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
+	background-color: #fafafa;
 }
 
-.container {
-	background-color: white;
-	border: 2px solid #222;
-	width: 400px;
-	padding: 20px;
+.users-container {
+	margin-top: 30px;
+	color: white;
+	width: 300px;
+	border: 1px solid #ccc;
+	position: relative;
 	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
-h2 {
-	margin-top: 20px;
-	font-weight: bold;
-	font-size: 1.2rem;
-	margin-bottom: 10px;
+.header {
+	background-color: rgb(84, 67, 236);
+	padding: 20px 20px 5px;
 }
 
-p {
-	font-size: 0.8rem;
+.header > small {
+	display: block;
+	margin-top: 5px;
 }
 
-.numbers {
+.header > input {
+	margin: 20px 0;
+	background-color: darkblue;
+	width: 100%;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	outline: none;
+	color: white;
+}
+
+.header > input::placeholder {
+	color: #ccc;
+}
+
+ul {
+	height: 450px;
+	overflow: scroll;
+}
+
+.user {
 	display: flex;
-	justify-content: space-between;
-	margin: 30px 0;
+	color: black;
+	border-bottom: 1px solid #ccc;
+	padding: 20px;
+	gap: 15px;
 }
 
-input {
-	width: 15%;
-	height: 3rem;
-	text-align: center;
-	font-size: 4rem;
-	border-radius: 3px;
-	border: #ccc 1px solid;
-	padding: 45px 5px;
-}
-.active {
-	border-color: #222;
+.user > img {
+	width: 60px;
+	border-radius: 50%;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-
-/* Firefox */
-input[type='number'] {
-	-moz-appearance: textfield;
-}
-
-.small {
-	margin-top: 150px;
-	width: 70%;
-	background-color: #ccc;
-	font-size: 0.6rem;
-	color: green;
-	text-align: center;
-	margin: 30px auto;
-	padding: 5px 10px;
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 }
