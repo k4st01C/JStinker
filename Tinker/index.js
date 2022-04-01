@@ -2,6 +2,7 @@ const users = document.querySelector('.users');
 const search = document.querySelector('input');
 const URL = 'https://randomuser.me/api/';
 const data = [];
+
 parameters = {
 	params: {
 		results: 300,
@@ -17,15 +18,19 @@ function concatLocation(city, country) {
 	return city + ', ' + country;
 }
 
-function filter() {
-	users.innerHTML = '';
-	const temp = data.filter(el => {
-		return Object.values(el).some(e => e.includes(search.value));
-	});
-	temp.forEach(el => {
+function listUsers(arr) {
+	arr.forEach(el => {
 		const { name, location, medium } = el;
 		users.insertAdjacentHTML('beforeend', renderHTML(name, location, medium));
 	});
+}
+
+function filter() {
+	users.innerHTML = '';
+	const temp = data.filter(el => {
+		return Object.values(el).some(e => new RegExp(`${search.value}`, 'i').test(e));
+	});
+	listUsers(temp);
 }
 
 function renderHTML(name, location, medium) {
@@ -53,8 +58,9 @@ function renderHTML(name, location, medium) {
 		} = el;
 		const name = concatName(title, first, last);
 		const location = concatLocation(city, country);
-		users.insertAdjacentHTML('beforeend', renderHTML(name, location, medium));
 		data.push({ name, location, medium });
 	});
+
+	listUsers(data);
 	search.addEventListener('keyup', filter);
 })();
