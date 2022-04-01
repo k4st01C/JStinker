@@ -1,66 +1,12 @@
-const users = document.querySelector('.users');
-const search = document.querySelector('input');
-const URL = 'https://randomuser.me/api/';
-const data = [];
+const btnClose = document.querySelector('.fa-close');
+const btnMenu = document.querySelector('.fa-bars');
+const panes = document.querySelectorAll('.left-pane');
+const width = 28;
 
-parameters = {
-	params: {
-		results: 300,
-		gender: 'female',
-	},
-};
+btnClose.addEventListener('click', () => {
+	panes.forEach((e, i) => (e.style.transform = 'translateX(-105%)'));
+});
 
-function concatName(title, first, last) {
-	return title + ' ' + first + ' ' + last;
-}
-
-function concatLocation(city, country) {
-	return city + ', ' + country;
-}
-
-function listUsers(arr) {
-	arr.forEach(el => {
-		const { name, location, medium } = el;
-		users.insertAdjacentHTML('beforeend', renderHTML(name, location, medium));
-	});
-}
-
-function filter() {
-	users.innerHTML = '';
-	const temp = data.filter(el => {
-		return Object.values(el).some(e => new RegExp(`${search.value}`, 'i').test(e));
-	});
-	listUsers(temp);
-}
-
-function renderHTML(name, location, medium) {
-	return `
- <li class="user">
-      <img src="${medium}">
-      <div class="info">
-          <h4>${name}</h4>
-          <p>${location}</p>
-      </div>
-  </li>
-  `;
-}
-
-(async function fetch() {
-	search.value = '';
-	const {
-		data: { results },
-	} = await axios.get(URL, parameters);
-	results.forEach(el => {
-		const {
-			name: { title, first, last },
-			location: { city, country },
-			picture: { medium },
-		} = el;
-		const name = concatName(title, first, last);
-		const location = concatLocation(city, country);
-		data.push({ name, location, medium });
-	});
-
-	listUsers(data);
-	search.addEventListener('keyup', filter);
-})();
+btnMenu.addEventListener('click', () => {
+	panes.forEach((e, i) => (e.style.transform = 'translateX(0)'));
+});
