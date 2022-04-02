@@ -20,68 +20,54 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #fafafa;
+	background-color: lightblue;
 	text-align: center;
 	gap: 10px;
 }
 
-img {
-	width: 160px;
-}
-
-.title {
-	text-transform: uppercase;
-}
-
-.fa-solid {
-	position: fixed;
-	top: 10px;
-	left: 10px;
-	cursor: pointer;
-}
-
-.left-pane {
-	height: 100vh;
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-
-.left-pane.red {
-	background-color: red;
-	width: 30%;
-	transition: transform 0.2s linear 0.4s;
-}
-.left-pane.black {
-	background-color: black;
-	width: 28%;
-	transition: transform 0.2s linear 0.2s;
-}
-.left-pane.white {
+.question-container {
 	background-color: white;
-	width: 26%;
-	transition: transform 0.2s linear;
+	padding: 10px 40px;
+	border-radius: 15px;
+	box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.25);
+	position: relative;
+	overflow: hidden;
 }
 
-.white > ul {
-	padding: 20px;
-	line-height: 1.5rem;
+.question-container > * {
+	margin-top: 30px;
 }
 
-li > ul {
-	padding-left: 20px;
-}
-ul > li {
-	list-style: none;
-	text-align: left;
-	font-size: 0.8rem;
+.question {
+	min-width: 300px;
+	max-width: 400px;
+	min-height: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-evenly;
+	margin: 10px 0 40px;
 }
 
-.fa-close {
+.question > h5 {
+	align-self: center;
+	font-size: larger;
+	/* justify-self: flex-start; */
+	/* padding: 20px; */
+}
+
+/* .answer > input {
+	size: 5px;
+} */
+
+button {
 	position: absolute;
-	left: 84%;
-	top: 2%;
-}
-
-@media max-width(300px) {
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	border: none;
+	padding: 10px;
+	background-color: rebeccapurple;
+	color: white;
 }
