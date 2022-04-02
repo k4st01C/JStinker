@@ -1,96 +1,48 @@
-const btn = document.querySelector('button');
-const question = document.querySelector('.question');
+const testimony = document.querySelector('.testimony>p');
+const name = document.querySelector('.name-title>p:first-child');
+const title = document.querySelector('.name-title>p:last-child');
+const img = document.querySelector('.person-info>img');
+const bar = document.querySelector('.progress-bar');
 let idx = 0;
-let answersCorrect = 0;
 
-const questions = [
+const testimonials = [
 	{
-		question: 'Shrimp can swim backwards.',
-		answerCorrect: 'True',
-		answersIncorrect: ['False'],
+		testimony: 'Responsiveness and client service are what keep me coming back to Array. It is great to know that they have our back in times of crisis. ',
+		imageUrl: 'https://picsum.photos/200',
+		name: 'Rene Bartz',
+		title: 'Receptionist',
 	},
 	{
-		question: 'When was Steam first released?',
-		answerCorrect: '2003',
-		answersIncorrect: ['2004', '2011', '2007'],
+		testimony:
+			'My firm has been working with Array for over 5 years, we all know every case does not settle but the mediators from Array refuse to accept that. Each of them exhaust every possible avenue, creatively think out of the box, finally, we always get follow-up and are never charged for that extra effort. Service the old fashioned way-EFFORT! ',
+		imageUrl: 'https://picsum.photos/200',
+		name: 'Hasan Börek',
+		title: 'Börekçi',
 	},
 	{
-		question: 'The Xenomorph from the science fiction film &quot;Alien&quot; has acidic blood.',
-		answerCorrect: 'True',
-		answersIncorrect: ['False'],
+		testimony:
+			'We hired Array to help us on document review for a bankruptcy matter. They jumped into action, immediately engaged our case team and got started on the review in record time. Status updates were provided on a regular basis and any potential issues were quickly escalated. This group knows how to keep document review on the tracks and get it over the finish line. ',
+		imageUrl: 'https://picsum.photos/200',
+		name: 'Enes Cihan',
+		title: 'Matbaacı',
 	},
 	{
-		question: 'Which one of the following is NOT a sub-company of the Volkswagen Group?',
-		answerCorrect: 'Opel',
-		answersIncorrect: ['Porsche', 'Bugatti', 'Bentley'],
-	},
-	{
-		question: 'In Star Trek, what is the name of Spock&#039;s father?',
-		answerCorrect: 'Sarek',
-		answersIncorrect: ['Tuvok', 'T&#039;Pal', 'Surak'],
-	},
-	{
-		question: 'Who was the director of &quot;Scott Pilgrim vs. the World (2010)&quot;?',
-		answerCorrect: 'Edgar Wright',
-		answersIncorrect: ['Phil Lord', 'Chris Miller', 'Seth Rogan'],
-	},
-	{
-		question: 'Spoon theory is a theory, utilizing &quot;Spoons&quot; as a metaphor for energy they can use in a day.',
-		answerCorrect: 'True',
-		answersIncorrect: ['False'],
-	},
-	{
-		question: 'The website &quot;Shut Up &amp; Sit Down&quot; reviews which form of media?',
-		answerCorrect: 'Board Games',
-		answersIncorrect: ['Television Shows', 'Video Games', 'Films'],
-	},
-	{
-		question: 'An isosceles triangle has two sides of equal length as opposed to three.',
-		answerCorrect: 'True',
-		answersIncorrect: ['False'],
-	},
-	{
-		question: 'In &quot;Resident Evil 2&quot;, which virus was William Birkin mutated by?',
-		answerCorrect: 'G-Virus',
-		answersIncorrect: ['T-Virus', 'C-Virus', 'E-Virus'],
+		testimony:
+			'I have worked with members of this company for years. They perform quickly while providing accurate and very efficient work product. Array is definitely my preferred e-discovery vendor. ',
+		imageUrl: 'https://picsum.photos/200',
+		name: 'Sumer  Cip',
+		title: 'Paki',
 	},
 ];
 
-function renderHTML(idx) {
-	return (
-		`<h5>${questions[idx].question}</h5>` +
-		[...questions[idx].answersIncorrect, questions[idx].answerCorrect]
-			.sort(() => Math.random() - 0.5)
-			.reduce((ac, el, idx) => {
-				return (
-					ac +
-					`<div class="answer">
-                <input type="radio" id="rb${idx}" name="answers">
-                <label for="rb${idx}">${el}</label>
-            </div>`
-				);
-			}, '')
-	);
+function loadTestimony() {
+	testimony.innerText = testimonials[idx].testimony;
+	name.innerText = testimonials[idx].name;
+	title.innerText = testimonials[idx].title;
+	img.setAttribute('src', testimonials[idx].imageUrl);
+	idx = ++idx % testimonials.length;
 }
 
-function renderScore() {
-	return `<p>You replied ${answersCorrect} out of ${questions.length} </p>`;
-}
+// loadTestimony();
 
-function nextQuestion() {
-	question.innerHTML = '';
-	question.insertAdjacentHTML('afterbegin', idx !== questions.length ? renderHTML(idx) : renderScore());
-	idx++;
-}
-
-nextQuestion();
-
-btn.addEventListener('click', () => {
-	const answer = [...document.querySelectorAll('input')].find(e => e.checked).nextElementSibling.innerText;
-	if (answer) {
-		if (answer === questions[idx - 1].answerCorrect) {
-			answersCorrect++;
-		}
-		nextQuestion();
-	}
-});
+setInterval(loadTestimony, 4000);
