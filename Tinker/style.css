@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,300&display=swap');
 
 :root {
 	--primary-color: #87cdf6;
@@ -16,73 +16,60 @@
 }
 
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: lightblue;
+	background-color: #fafafa;
 	text-align: center;
 	gap: 10px;
 }
-
-.testimony-container {
-	position: relative;
-	width: 600px;
-	display: flex;
-	background-color: #306eff;
-	padding: 30px 10px;
-	border-radius: 10px;
-	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-	color: white;
+h1 {
+	margin-top: 50px;
+	font-size: 5rem;
+	letter-spacing: -2px;
+	color: lightskyblue;
 }
-
-.progress-bar {
-	width: 0%;
-	transform-origin: top left;
-	height: 5px;
-	background-color: white;
-	position: absolute;
-	left: 10%;
-	top: 15px;
-	border-radius: 5px;
-	animation: grow 4s linear infinite;
-}
-
-@keyframes grow {
-	100% {
-		width: 80%;
-	}
-}
-
-.fa-solid {
-	font-size: 2rem;
-	padding: 20px;
-	color: orange;
-}
-
-.person-info {
-	display: flex;
-	gap: 20px;
-	align-items: center;
-}
-
-.person-info > img {
-	width: 60px;
-	border-radius: 50%;
-	display: flex;
-}
-
-.testimony > * {
+.todos {
+	width: 300px;
+	margin: 0 auto;
+	box-shadow: var(--box-shadow);
 	margin-bottom: 20px;
+	font-size: 1rem;
+	font-weight: 300;
+	text-align: left;
 }
 
-.testimony {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.todo {
+	padding: 5px 10px;
+	width: 100%;
+	background-color: white;
+	border: 1px solid #e0e0e0;
+	border-top: none;
+	font-size: 0.8rem;
 }
-.testimony > p {
-	text-align: left;
+
+input {
+	width: 100%;
+	padding: 5px 10px;
+	border: 1px solid #e0e0e0;
+}
+
+input::placeholder {
+	font-weight: 500;
+	color: #777;
+}
+
+input:focus {
+	outline: none;
+}
+
+small {
+	display: block;
+	font-weight: 300;
+	font-size: 0.6rem;
+}
+
+.done {
+	font-style: italic;
+	text-decoration: line-through;
+	color: #777;
 }
