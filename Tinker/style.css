@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
-	--primary-color: #87cdf6;
+	--primary-color: #516dff;
 	--secondary-color: hsl(120, 64%, 43%);
-	/* --border-color: #87cdf6; */
 	--text-color: #cffff6;
 	--border-radius: 8px;
 	--box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
@@ -16,60 +15,114 @@
 }
 
 body {
-	font-family: 'Poppins', sans-serif;
-	height: 100vh;
-	background-color: #fafafa;
+	font-family: 'Press Start 2P', cursive;
+	background-color: var(--primary-color);
+	color: white;
+	overflow: hidden;
+}
+
+.screen {
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	justify-content: center;
+	align-items: center;
+	border: 10px solid black;
 	gap: 10px;
 }
-h1 {
-	margin-top: 50px;
-	font-size: 5rem;
-	letter-spacing: -2px;
-	color: lightskyblue;
-}
-.todos {
-	width: 300px;
-	margin: 0 auto;
-	box-shadow: var(--box-shadow);
-	margin-bottom: 20px;
-	font-size: 1rem;
-	font-weight: 300;
-	text-align: left;
-}
 
-.todo {
-	padding: 5px 10px;
-	width: 100%;
+.screen > button {
+	border: none;
+	padding: 10px 20px;
 	background-color: white;
-	border: 1px solid #e0e0e0;
-	border-top: none;
-	font-size: 0.8rem;
+	cursor: pointer;
+	color: var(--primary-color);
+	font-family: inherit;
 }
 
-input {
+.screen > button:active {
+	scale: 0.98;
+}
+
+.insects {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+}
+
+ul > li {
+	list-style: none;
+}
+
+.choose-insect-btn {
+	border: 2px solid white;
+	cursor: pointer;
+	font-family: inherit;
+	color: white;
+}
+.choose-insect-btn:hover,
+.choose-insect-btn:active {
+	background-color: white;
+	color: #516dff;
+}
+
+.choose-insect-btn > img {
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
+	object-position: center center;
+}
+
+.choose-insect-btn > p {
+	padding: 5px;
+}
+
+button {
+	background-color: transparent;
+}
+
+.game-container {
+	position: relative;
+}
+
+#time {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-size: 1rem;
+}
+
+#score {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 1rem;
+}
+
+#message {
 	width: 100%;
-	padding: 5px 10px;
-	border: 1px solid #e0e0e0;
+	background-color: rgba(0, 0, 0, 0.541);
+	line-height: 1.7;
+	padding: 20px;
+	z-index: 100;
+	transform: translateX(-150%);
 }
 
-input::placeholder {
-	font-weight: 500;
-	color: #777;
+.screen.up {
+	margin-top: -100vh;
+	transition: all 0.5s linear;
 }
 
-input:focus {
-	outline: none;
+#message.visible {
+	transform: translateX(0%);
+	transition: transform 0.5s ease-in;
 }
 
-small {
-	display: block;
-	font-weight: 300;
-	font-size: 0.6rem;
-}
-
-.done {
-	font-style: italic;
-	text-decoration: line-through;
-	color: #777;
+.insects-container > img {
+	position: absolute;
+	width: 80px;
+	cursor: pointer;
 }

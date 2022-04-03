@@ -1,53 +1,63 @@
-const list = document.querySelector('.list');
-const input = document.querySelector('form>input');
-const form = document.querySelector('form');
+const screens = document.querySelectorAll('.screen');
+const insectsUl = document.querySelector('.insects');
+const startBtn = document.querySelector('.start-button');
+const insects = document.querySelector('.insects-container');
+const screen = document.querySelector('.game-container');
+const scoreEl = document.getElementById('score');
+const secondEl = document.querySelector('#time>span:last-child');
+const minuteEl = document.querySelector('#time>span:first-child');
+const message = document.getElementById('message');
+let selected;
+let score = 0;
+let seconds = 0;
+let minutes = 0;
 
-let todoIdx = 0;
-const todos = [];
-
-if (localStorage.getItem('notes')) {
-	for (const iterator of JSON.parse(localStorage.getItem('notes'))) {
-		addTodo(iterator.todo, iterator.done);
-	}
+function randomLocX() {
+	return ~~(Math.random() * 81) + 5 + '%';
 }
-function updateLS() {
-	localStorage.setItem('notes', JSON.stringify(todos));
+function randomLocY() {
+	return ~~(Math.random() * 81) + 5 + '%';
 }
-
-function isTodo(e) {
-	return e.target.classList.contains('todo');
-}
-
-function addTodo(todo, state = 0) {
-	const temp = document.createElement('div');
-	temp.className = state ? 'todo done' : 'todo';
-	temp.setAttribute('data-idx', todoIdx);
-	temp.innerText = todo;
-	list.insertBefore(temp, list.children[0]);
-	todos.push({ todo, done: state });
-	todoIdx++;
-	updateLS();
-	input.value = '';
+function randomDeg() {
+	return ~~(Math.random() * 360) + 'deg';
 }
 
-input.value = '';
+function setTime() {
+	seconds = ++seconds;
+	if (seconds === 60) ++minutes;
+	seconds = seconds % 60;
+	secondEl.innerText = seconds.toString().padStart(2, '0');
+	minuteEl.innerText = minutes.toString().padStart(2, '0');
+}
 
-form.addEventListener('submit', e => {
-	e.preventDefault();
-	if (input.value) addTodo(input.value);
+function loadInsect() {
+	const insect = document.createElement('img');
+	insect.setAttribute('src', selected);
+	insect.style.left = randomLocX();
+	insect.style.top = randomLocY();
+	insect.style.rotate = randomDeg();
+	insects.appendChild(insect);
+}
+
+startBtn.addEventListener('click', () => {
+	screens[0].classList.add('up');
 });
-list.addEventListener('click', e => {
-	if (isTodo(e)) {
-		e.target.classList.toggle('done');
-		todos[e.target.dataset.idx].done ^= true;
-		updateLS();
+
+insectsUl.addEventListener('click', e => {
+	if (e.target.parentElement.className === 'choose-insect-btn') {
+		screens[1].classList.add('up');
+		selected = e.target.closest('img').src;
+		loadInsect();
+		setInterval(setTime, 1000);
 	}
 });
-list.addEventListener('contextmenu', e => {
-	e.preventDefault();
-	if (isTodo(e)) {
+
+insects.addEventListener('click', e => {
+	if (e.target.src) {
 		e.target.remove();
-		todos.splice(e.target.dataset.idx, 1);
-		updateLS();
+		loadInsect();
+		loadInsect();
+		scoreEl.innerText = 'Score: ' + ++score;
+		if (score === 20) message.classList.toggle('visible');
 	}
 });

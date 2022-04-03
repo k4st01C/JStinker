@@ -11,16 +11,49 @@
 </head>
 
 <body>
-    <h1>todos</h1>
-    <div class="todos">
-        <form>
-            <input type="text" placeholder="Enter your todo">
-        </form>
-        <div class="list">
-        </div>
+    <div class="screen">
+        <h1>Catch the insect</h1>
+        <button class="start-button">Play Game</button>
     </div>
-    <small>Left click to toggle completed</small>
-    <small>Right click to delete</small>
+    <div class="screen">
+        <h1>What is your "favorite" insect?</h1>
+        <ul class="insects">
+            <li>
+                <button class="choose-insect-btn">
+                    <p>Fly</p>
+                    <img src="https://pngimg.com/uploads/fly/fly_PNG3946.png">
+                </button>
+            </li>
+            <li>
+                <button class="choose-insect-btn">
+                    <p>Mosquito</p>
+                    <img src="https://pngimg.com/uploads/mosquito/mosquito_PNG18173.png">
+                </button>
+            </li>
+            <li>
+                <button class="choose-insect-btn">
+                    <p>Spider</p>
+                    <img src="https://pngimg.com/uploads/spider/spider_PNG43.png">
+                </button>
+            </li>
+            <li>
+                <button class="choose-insect-btn">
+                    <p>Roach</p>
+                    <img src="https://pngimg.com/uploads/roach/roach_PNG12150.png">
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="screen game-container">
+        <h3 id="time">Time:<span>00</span>:<span>00</span></h3>
+        <h3 id="score">Score: 0</h3>
+        <h5 id="message">
+            Are you annoyet yet?<br>
+            You are playing an impossible game
+        </h5>
+        <div class="insects-container"></div>
+    </div>
+
     <script src="index.js"></script>
 </body>
 
