@@ -34,7 +34,7 @@ input.value = '';
 
 form.addEventListener('submit', e => {
 	e.preventDefault();
-	addTodo(input.value);
+	if (input.value) addTodo(input.value);
 });
 list.addEventListener('click', e => {
 	if (isTodo(e)) {
