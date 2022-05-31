@@ -6,4 +6,7 @@
   button{
     @apply bg-blue-500 text-white block px-5 py-2 rounded hover:bg-blue-400;
   }
+  input{
+    @apply border-2
+  }
 }
