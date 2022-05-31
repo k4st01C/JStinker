@@ -51,9 +51,15 @@ function Time() {
 	    time = _useState4[0],
 	    setTime = _useState4[1];
 
-	setTimeout(function () {
-		return setTime(new Date().toLocaleString());
-	}, 1000);
+	useEffect(function () {
+		var interval = setInterval(function () {
+			return setTime(new Date().toLocaleString());
+		}, 1000);
+		return function () {
+			return clearInterval(interval);
+		};
+	}, []);
+
 	return React.createElement(
 		'p',
 		null,

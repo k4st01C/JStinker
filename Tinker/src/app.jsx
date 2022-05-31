@@ -18,8 +18,8 @@ useEffect(() => localStorage.setItem('app', JSON.stringify(contacts)),[contacts]
 					<Contact setContacts={setContacts} name={e.name} age={e.age} id={e.id}/>
 				))}
 			</ul>
-			<LikeArea />
-			<Time />
+			<LikeArea/>
+			<Time/>
 		</div>
 	);
 }
@@ -30,7 +30,11 @@ function Header() {
 
 function Time() {
 	const [time, setTime] = useState(new Date().toLocaleString());
-	setTimeout(() => setTime(new Date().toLocaleString()), 1000);
+	useEffect(() => {
+		const interval=setInterval(() => setTime(new Date().toLocaleString()), 1000)
+		return ()=>clearInterval(interval);
+	},[]);
+
 	return <p>Time is {time}</p>;
 }
 
